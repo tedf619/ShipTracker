@@ -110,7 +110,7 @@ partial class MainForm
     buttonDisconnect.Location = new Point(584, 11);
     buttonDisconnect.Name = "buttonDisconnect";
     buttonDisconnect.Size = new Size(85, 26);
-    buttonDisconnect.TabIndex = 3;
+    buttonDisconnect.TabIndex = 1;
     buttonDisconnect.Text = "Disconnect";
     toolTip.SetToolTip(buttonDisconnect, "Disconnect from service");
     buttonDisconnect.UseVisualStyleBackColor = true;
@@ -121,7 +121,7 @@ partial class MainForm
     buttonConnect.Location = new Point(492, 11);
     buttonConnect.Name = "buttonConnect";
     buttonConnect.Size = new Size(86, 26);
-    buttonConnect.TabIndex = 2;
+    buttonConnect.TabIndex = 0;
     buttonConnect.Text = "Connect";
     toolTip.SetToolTip(buttonConnect, "Connect to AISStream.io service");
     buttonConnect.UseVisualStyleBackColor = true;
@@ -133,7 +133,7 @@ partial class MainForm
     textBoxApiKey.Name = "textBoxApiKey";
     textBoxApiKey.PlaceholderText = "Paste your AISStream.io API key here";
     textBoxApiKey.Size = new Size(320, 23);
-    textBoxApiKey.TabIndex = 1;
+    textBoxApiKey.TabIndex = 2;
     toolTip.SetToolTip(textBoxApiKey, "This app checks the Environment variable \"AISSTREAM_API_KEY\" for your API key. \r\nIf one isn't found, you can enter the key here.");
     textBoxApiKey.UseSystemPasswordChar = true;
     // 

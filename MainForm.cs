@@ -11,6 +11,8 @@ public partial class MainForm : Form
     shipTracker.StatusMessage += ShipTracker_StatusMessage;
     shipTracker.Exception += ShipTracker_Exception;
 
+    if (textBoxApiKey.Text.Length > 0) return;
+
     // get the AISService key from the environment, so we don't expose the key in code
     textBoxApiKey.Text = Environment.GetEnvironmentVariable("AISSTREAM_API_KEY") ?? string.Empty;
   }
