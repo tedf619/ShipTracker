@@ -39,6 +39,7 @@ public sealed class AisService : IAsyncDisposable
     {
       ["APIKey"] = apiKey,
       ["BoundingBoxes"] = boundingBoxes,
+      ["FilterMessageTypes"] = messageTypeFilter
     };
 
     var payload = JsonSerializer.SerializeToUtf8Bytes(subscription);
@@ -61,7 +62,7 @@ public sealed class AisService : IAsyncDisposable
     {
       while (webSocket is { State: WebSocketState.Open } && !token.IsCancellationRequested)
       {
-        messageStream.SetLength(0);  // iniatialize stream
+        messageStream.SetLength(0);  // initialize stream
         WebSocketReceiveResult result;
         do
         {
@@ -78,9 +79,9 @@ public sealed class AisService : IAsyncDisposable
         try
         {
           var envelope = JsonSerializer.Deserialize<AisEnvelope>(messageStream);
+          if (envelope is null) return;
 
-          if (envelope is not null)
-            FireMessageReceived(envelope);
+          FireMessageReceived(envelope);
         }
         catch (JsonException ex)
         {
@@ -92,10 +93,15 @@ public sealed class AisService : IAsyncDisposable
     {
       // not an error: expected when the caller disconnects
     }
+    catch (WebSocketException)
+    {
+      FireException(new Exception("Connection error. The API key may be invalid"));
+      FireStatusChanged($"Server disconnected");
+    }
     catch (Exception ex)
     {
       FireException(ex);
-      FireStatusChanged($"Server disconnected: {ex.Message}");
+      FireStatusChanged($"Server disconnected");
     }
   }
 
