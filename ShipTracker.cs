@@ -8,7 +8,7 @@ namespace ShipTracker;
 
 public partial class ShipTracker : GMapControl
 {
-  private static readonly double[][] BoundingBoxMalaccaStrait =
+  static readonly double[][] BoundingBoxMalaccaStrait =
   [
     [6.5, 95.0],   // north-west corner
     [1.0, 104.5],  // south-east corner
@@ -46,7 +46,7 @@ public partial class ShipTracker : GMapControl
     base.CanDragMap = true;
     base.MouseWheelZoomType = MouseWheelZoomType.MousePositionAndCenter;
     base.ShowCenter = false;
-    base.IgnoreMarkerOnMouseWheel = true;   // so zooming works when on a flight marker
+    base.IgnoreMarkerOnMouseWheel = true;   // so zooming works when on a ship marker
 
     base.Overlays.Add(overlayShips);
 
@@ -195,8 +195,6 @@ public partial class ShipTracker : GMapControl
 
     if (shipType != AisShipType.All)
       ships = Ships.Values.Where(s => s.ShipType == shipType).ToList();
-
-    if (ships.Count == 0) return;
 
     foreach (var ship in ships)
     {
