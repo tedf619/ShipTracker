@@ -499,7 +499,7 @@ partial class MainForm
     labelSpecialColor.Name = "labelSpecialColor";
     labelSpecialColor.Size = new Size(20, 19);
     labelSpecialColor.TabIndex = 14;
-    labelSpecialColor.Tag = "HighSpeedCraft";
+    labelSpecialColor.Tag = "SpecialCraftOrService";
     toolTip.SetToolTip(labelSpecialColor, "Search and rescue, port tender or law enforcement");
     labelSpecialColor.Click += labelShipColor_Click;
     // 
